@@ -1,7 +1,8 @@
 <?php
 
 require_once('../Router.php');
+require_once('product.php');
 
-Router::listen('/php-rest-router');
+Router::get('/', 'Product::details');
 
-var_dump(Router::$params);
+Router::listen('/php-rest-router/tests');

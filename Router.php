@@ -44,5 +44,16 @@ class Router {
             self::$params[$kvp[0]] = $kvp[1];
         }
 
+        $target = self::$routes[$method][$route];
+
+        if (is_callable($target)) {
+            call_user_func($target);
+            return;
+        }
+
+        if (is_file($target)) {
+            require_once($target);
+            return;
+        }
     }
 }
