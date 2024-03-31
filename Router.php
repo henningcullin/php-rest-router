@@ -60,6 +60,17 @@ class Router {
             }
         }
 
+        else if (isset($_SERVER['CONTENT_TYPE']) && str_contains($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded')) {
+            $body_raw = file_get_contents('php://input');
+
+            $body_array = explode('&', $body_raw);
+
+            foreach ($body_array as $body_slice) {
+                $kvp = explode('=', $body_slice);
+                self::$body[$kvp[0]] = $kvp[1];
+            }
+        }
+
         $target = self::$routes[$method][$route];
 
         if (is_callable($target)) {
