@@ -3,7 +3,7 @@
 class Product {
 
     public static function details() {
-        var_dump(Router::$params);
+        var_dump(Router::$body);
     }
 
 }

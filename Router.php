@@ -44,6 +44,22 @@ class Router {
             self::$params[$kvp[0]] = $kvp[1];
         }
 
+        if (str_contains($_SERVER['CONTENT_TYPE'], 'multipart/form-data')) {
+            $boundary = '--' . explode('=', $_SERVER['CONTENT_TYPE'])[1];
+
+            $body_array = explode($boundary, file_get_contents('php://input'));
+
+            for ($i = 1; $i < count($body_array) - 1; $i++) {
+                $body_slice = explode('"', $body_array[$i]);
+
+                $key = $body_slice[1];
+
+                $value = str_replace(PHP_EOL, '', $body_slice[2]);
+
+                self::$body[$key] = $value;
+            }
+        }
+
         $target = self::$routes[$method][$route];
 
         if (is_callable($target)) {
