@@ -44,7 +44,7 @@ class Router {
             self::$params[$kvp[0]] = $kvp[1];
         }
 
-        if (str_contains($_SERVER['CONTENT_TYPE'], 'multipart/form-data')) {
+        if (isset($_SERVER['CONTENT_TYPE']) && str_contains($_SERVER['CONTENT_TYPE'], 'multipart/form-data')) {
             $boundary = '--' . explode('=', $_SERVER['CONTENT_TYPE'])[1];
 
             $body_array = explode($boundary, file_get_contents('php://input'));
