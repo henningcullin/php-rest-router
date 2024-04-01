@@ -70,7 +70,12 @@ class Router {
                 break;
         }
 
-        $target = self::$routes[$method][$route];
+        $target = isset(self::$routes[$method][$route]) ? self::$routes[$method][$route] : null;
+
+        if (!isset($target)) {
+            echo 'No route';
+            return;
+        }
 
         if (is_callable($target)) {
             call_user_func($target);
