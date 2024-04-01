@@ -44,31 +44,29 @@ class Router {
             self::$params[$kvp[0]] = $kvp[1];
         }
 
-        switch (true) {
+        switch (true) { // body parser
             case !isset($_SERVER['CONTENT_TYPE']): // no body case
                 break;
             case str_contains($_SERVER['CONTENT_TYPE'], 'multipart/form-data'):
                 $boundary = '--' . explode('=', $_SERVER['CONTENT_TYPE'])[1];
-
                 $body_array = explode($boundary, file_get_contents('php://input'));
-
                 for ($i = 1; $i < count($body_array) - 1; $i++) {
                     $body_slice = explode('"', $body_array[$i]);
-
                     $key = $body_slice[1];
-
                     $value = str_replace(PHP_EOL, '', $body_slice[2]);
-
                     self::$body[$key] = $value;
                 }
                 break;
             case str_contains($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded'):
                 $body_array = explode('&', file_get_contents('php://input'));
-
                 foreach ($body_array as $body_slice) {
                     $kvp = explode('=', $body_slice);
                     self::$body[$kvp[0]] = $kvp[1];
                 }
+                break;
+            case str_contains($_SERVER['CONTENT_TYPE'], 'application/json'): 
+                $raw_body = file_get_contents('php://input');
+                self::$body = json_decode($raw_body, true);
                 break;
         }
 
