@@ -44,31 +44,32 @@ class Router {
             self::$params[$kvp[0]] = $kvp[1];
         }
 
-        if (isset($_SERVER['CONTENT_TYPE']) && str_contains($_SERVER['CONTENT_TYPE'], 'multipart/form-data')) {
-            $boundary = '--' . explode('=', $_SERVER['CONTENT_TYPE'])[1];
+        switch (true) {
+            case !isset($_SERVER['CONTENT_TYPE']): // no body case
+                break;
+            case str_contains($_SERVER['CONTENT_TYPE'], 'multipart/form-data'):
+                $boundary = '--' . explode('=', $_SERVER['CONTENT_TYPE'])[1];
 
-            $body_array = explode($boundary, file_get_contents('php://input'));
+                $body_array = explode($boundary, file_get_contents('php://input'));
 
-            for ($i = 1; $i < count($body_array) - 1; $i++) {
-                $body_slice = explode('"', $body_array[$i]);
+                for ($i = 1; $i < count($body_array) - 1; $i++) {
+                    $body_slice = explode('"', $body_array[$i]);
 
-                $key = $body_slice[1];
+                    $key = $body_slice[1];
 
-                $value = str_replace(PHP_EOL, '', $body_slice[2]);
+                    $value = str_replace(PHP_EOL, '', $body_slice[2]);
 
-                self::$body[$key] = $value;
-            }
-        }
+                    self::$body[$key] = $value;
+                }
+                break;
+            case str_contains($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded'):
+                $body_array = explode('&', file_get_contents('php://input'));
 
-        else if (isset($_SERVER['CONTENT_TYPE']) && str_contains($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded')) {
-            $body_raw = file_get_contents('php://input');
-
-            $body_array = explode('&', $body_raw);
-
-            foreach ($body_array as $body_slice) {
-                $kvp = explode('=', $body_slice);
-                self::$body[$kvp[0]] = $kvp[1];
-            }
+                foreach ($body_array as $body_slice) {
+                    $kvp = explode('=', $body_slice);
+                    self::$body[$kvp[0]] = $kvp[1];
+                }
+                break;
         }
 
         $target = self::$routes[$method][$route];
