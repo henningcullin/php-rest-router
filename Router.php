@@ -51,9 +51,10 @@ class Router {
                 $boundary = '--' . explode('=', $_SERVER['CONTENT_TYPE'])[1];
                 $body_array = explode($boundary, file_get_contents('php://input'));
                 for ($i = 1; $i < count($body_array) - 1; $i++) {
-                    $body_slice = explode('"', $body_array[$i]);
-                    $key = $body_slice[1];
-                    $value = str_replace(PHP_EOL, '', $body_slice[2]);
+                    if (str_contains($body_array[$i], 'Content-Type')) continue;
+                    $body_slice_array = explode('"', $body_array[$i]);
+                    $key = $body_slice_array[1];
+                    $value = str_replace(PHP_EOL, '', $body_slice_array[2]);
                     self::$body[$key] = $value;
                 }
                 break;
