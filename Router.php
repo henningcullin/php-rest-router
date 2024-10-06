@@ -537,7 +537,6 @@ enum ContentHeader: string
     case CONTENT_LOCATION = 'Content-Location';
     case CONTENT_DISPOSITION = 'Content-Disposition';
     case CONTENT_MD5 = 'Content-MD5';
-    case CONTENT_RANGE = 'Content-Range';
     case CONTENT_SECURITY_POLICY = 'Content-Security-Policy';
     case CONTENT_TYPE_OPTIONS = 'X-Content-Type-Options';
     case CONTENT_TRANSFER_ENCODING = 'Content-Transfer-Encoding';
@@ -2711,10 +2710,6 @@ enum ContentType: string
     case VIDEO_VND_VIVO = 'video/vnd.vivo';
     case VIDEO_VP8 = 'video/VP8';
     case VIDEO_VP9 = 'video/VP9';
-
-        // Other Types
-    case APPLICATION_LINK_FORMAT = 'application/link-format';
-    case APPLICATION_JSON_PATCH_JSON = 'application/json-patch+json';
 }
 
 class Router
