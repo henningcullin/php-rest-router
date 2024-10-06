@@ -2,15 +2,152 @@
 
 enum Method: string
 {
+    /** 
+     * The GET method requests a representation of the specified resource. 
+     * Requests using GET should only retrieve data and have no other effect. 
+     * 
+     * Reference: [RFC7231, Section 4.3.1]
+     */
     case GET = 'GET';
+
+    /** 
+     * The POST method submits data to be processed to a specified resource. 
+     * It can result in the creation of a new resource or the modification 
+     * of existing resources. 
+     * 
+     * Reference: [RFC7231, Section 4.3.3]
+     */
     case POST = 'POST';
+
+    /** 
+     * The PUT method replaces all current representations of the target 
+     * resource with the request payload. 
+     * 
+     * Reference: [RFC7231, Section 4.3.4]
+     */
     case PUT = 'PUT';
+
+    /** 
+     * The HEAD method requests the headers of a specified resource, 
+     * similar to a GET request, but without the response body. 
+     * 
+     * Reference: [RFC7231, Section 4.3.2]
+     */
     case HEAD = 'HEAD';
+
+    /** 
+     * The DELETE method deletes the specified resource. 
+     * 
+     * Reference: [RFC7231, Section 4.3.5]
+     */
     case DELETE = 'DELETE';
+
+    /** 
+     * The OPTIONS method describes the communication options for the 
+     * target resource. It can be used to check the supported methods 
+     * and other capabilities of a server. 
+     * 
+     * Reference: [RFC7231, Section 4.3.7]
+     */
     case OPTIONS = 'OPTIONS';
+
+    /** 
+     * The PATCH method applies partial modifications to a resource. 
+     * 
+     * Reference: [RFC5789, Section 2]
+     */
     case PATCH = 'PATCH';
+
+    /** 
+     * The TRACE method performs a message loop-back test along the 
+     * path to the target resource, providing a useful debugging tool. 
+     * 
+     * Reference: [RFC7231, Section 4.3.8]
+     */
     case TRACE = 'TRACE';
+
+    /** 
+     * The CONNECT method establishes a tunnel to the server identified 
+     * by the target resource. This is often used for SSL (HTTPS) 
+     * connections through an HTTP proxy. 
+     * 
+     * Reference: [RFC7231, Section 4.3.6]
+     */
     case CONNECT = 'CONNECT';
+
+    /** 
+     * The COPY method creates a duplicate of a resource at a different URI.
+     * 
+     * Reference: [RFC4918, Section 9.8]
+     */
+    case COPY = 'COPY';
+
+    /** 
+     * The LINK method establishes a relationship between two resources. 
+     * 
+     * Reference: [RFC2068, Section 9.4]
+     */
+    case LINK = 'LINK';
+
+    /** 
+     * The UNLINK method removes a relationship between two resources. 
+     * 
+     * Reference: [RFC2068, Section 9.4]
+     */
+    case UNLINK = 'UNLINK';
+
+    /** 
+     * The PURGE method is used to remove a cached resource from a cache. 
+     * 
+     * Reference: Not standardized in an RFC, but commonly recognized in CDN contexts.
+     */
+    case PURGE = 'PURGE';
+
+    /** 
+     * The PROPFIND method retrieves properties of a resource, primarily 
+     * used in WebDAV. 
+     * 
+     * Reference: [RFC4918, Section 9.1]
+     */
+    case PROPFIND = 'PROPFIND';
+
+    /** 
+     * The PROPPATCH method modifies properties of a resource, primarily 
+     * used in WebDAV. 
+     * 
+     * Reference: [RFC4918, Section 9.2]
+     */
+    case PROPPATCH = 'PROPPATCH';
+
+    /** 
+     * The MKCOL method creates a new collection (e.g., a directory) in 
+     * WebDAV. 
+     * 
+     * Reference: [RFC4918, Section 9.3]
+     */
+    case MKCOL = 'MKCOL';
+
+    /** 
+     * The MOVE method moves a resource from one URI to another in WebDAV. 
+     * 
+     * Reference: [RFC4918, Section 9.4]
+     */
+    case MOVE = 'MOVE';
+
+    /** 
+     * The LOCK method locks a resource so that it cannot be modified 
+     * by other users in WebDAV. 
+     * 
+     * Reference: [RFC4918, Section 9.7]
+     */
+    case LOCK = 'LOCK';
+
+    /** 
+     * The UNLOCK method unlocks a previously locked resource in WebDAV. 
+     * 
+     * Reference: [RFC4918, Section 9.8]
+     */
+    case UNLOCK = 'UNLOCK';
 }
 
 enum StatusCode: int
