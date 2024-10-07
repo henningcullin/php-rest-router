@@ -532,23 +532,163 @@ enum StatusCode: int
     case NOT_EXTENDED = 510;
 }
 
-enum ContentHeader: string
+enum Header: string
 {
+    /** 
+     * The MIME type of the body of the request (used with POST and PUT requests).
+     * Reference: [RFC7231, Section 3.1.1.5](https://datatracker.ietf.org/doc/html/rfc7231#section-3.1.1.5)
+     */
     case CONTENT_TYPE = 'Content-Type';
+
+    /** 
+     * The size of the body in octets (8-bit bytes).
+     * Reference: [RFC7230, Section 3.3.2](https://datatracker.ietf.org/doc/html/rfc7230#section-3.3.2)
+     */
     case CONTENT_LENGTH = 'Content-Length';
+
+    /** 
+     * The type of encoding used on the data.
+     * Reference: [RFC7231, Section 3.1.2.2](https://datatracker.ietf.org/doc/html/rfc7231#section-3.1.2.2)
+     */
     case CONTENT_ENCODING = 'Content-Encoding';
+
+    /** 
+     * The natural language or languages of the intended audience for the enclosed content.
+     * Reference: [RFC7231, Section 3.1.3.2](https://datatracker.ietf.org/doc/html/rfc7231#section-3.1.3.2)
+     */
     case CONTENT_LANGUAGE = 'Content-Language';
+
+    /** 
+     * A location where the content of the request/response is located.
+     * Reference: [RFC7231, Section 3.1.4.2](https://datatracker.ietf.org/doc/html/rfc7231#section-3.1.4.2)
+     */
     case CONTENT_LOCATION = 'Content-Location';
+
+    /** 
+     * Indicates if the content is expected to be displayed inline or as an attachment.
+     * Reference: [RFC6266](https://datatracker.ietf.org/doc/html/rfc6266)
+     */
     case CONTENT_DISPOSITION = 'Content-Disposition';
+
+    /** 
+     * A Base64-encoded binary MD5 sum of the content of the request body.
+     * Reference: [RFC1864](https://datatracker.ietf.org/doc/html/rfc1864)
+     */
     case CONTENT_MD5 = 'Content-MD5';
+
+    /** 
+     * A mechanism for web applications to control resources the user agent is allowed to load.
+     * Reference: [CSP Specification](https://w3c.github.io/webappsec-csp/)
+     */
     case CONTENT_SECURITY_POLICY = 'Content-Security-Policy';
+
+    /** 
+     * Used to prevent MIME types security risks by declaring the intended content type.
+     * Reference: [RFC7034](https://datatracker.ietf.org/doc/html/rfc7034)
+     */
     case CONTENT_TYPE_OPTIONS = 'X-Content-Type-Options';
+
+    /** 
+     * Specifies the encoding transformation that has been applied to the message body.
+     * Reference: [RFC2045](https://datatracker.ietf.org/doc/html/rfc2045)
+     */
     case CONTENT_TRANSFER_ENCODING = 'Content-Transfer-Encoding';
+
+    /** 
+     * Indicates the policy that will be enforced by browsers regarding content security, but only in a reporting mode.
+     * Reference: [CSP Specification](https://w3c.github.io/webappsec-csp/)
+     */
     case CONTENT_SECURITY_POLICY_REPORT_ONLY = 'Content-Security-Policy-Report-Only';
+
+    /** 
+     * Specifies a URI to which the user agent sends reports about policy violations.
+     * Reference: [CSP Specification](https://w3c.github.io/webappsec-csp/)
+     */
     case CONTENT_SECURITY_POLICY_REPORT_URI = 'Content-Security-Policy-Report-URI';
-    case CONTENT_INFO = 'Content-Info'; // Custom or less common headers
-    case CONTENT_RANGE = 'Content-Range'; // Used for range requests
-    case CONTENT_VARIANT = 'Content-Variant'; // Custom or less common headers
+
+    /** 
+     * Custom or experimental header containing information about the content.
+     * Reference: [Custom Use]
+     */
+    case CONTENT_INFO = 'Content-Info';
+
+    /** 
+     * Indicates where in a full body message a partial message belongs.
+     * Reference: [RFC7233, Section 4.2](https://datatracker.ietf.org/doc/html/rfc7233#section-4.2)
+     */
+    case CONTENT_RANGE = 'Content-Range';
+
+    /** 
+     * Used to describe different variants of the same resource.
+     * Reference: [Custom Use]
+     */
+    case CONTENT_VARIANT = 'Content-Variant';
+
+    /** 
+     * Directives for caching mechanisms in both requests and responses.
+     * Reference: [RFC7234, Section 5.2](https://datatracker.ietf.org/doc/html/rfc7234#section-5.2)
+     */
+    case CACHE_CONTROL = 'Cache-Control';
+
+    /** 
+     * Allows the sender to include additional information about the connection.
+     * Reference: [RFC7230, Section 6.1](https://datatracker.ietf.org/doc/html/rfc7230#section-6.1)
+     */
+    case CONNECTION = 'Connection';
+
+    /** 
+     * The date and time at which the message was originated.
+     * Reference: [RFC7231, Section 7.1.1.2](https://datatracker.ietf.org/doc/html/rfc7231#section-7.1.1.2)
+     */
+    case DATE = 'Date';
+
+    /** 
+     * The user agent's preferred languages for the response.
+     * Reference: [RFC7231, Section 5.3.5](https://datatracker.ietf.org/doc/html/rfc7231#section-5.3.5)
+     */
+    case ACCEPT_LANGUAGE = 'Accept-Language';
+
+    /** 
+     * Informs the server of acceptable formats for the response.
+     * Reference: [RFC7231, Section 5.3.2](https://datatracker.ietf.org/doc/html/rfc7231#section-5.3.2)
+     */
+    case ACCEPT = 'Accept';
+
+    /** 
+     * Indicates the origin(s) that are allowed to access the response.
+     * Reference: [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+     */
+    case ACCESS_CONTROL_ALLOW_ORIGIN = 'Access-Control-Allow-Origin';
+
+    /** 
+     * Contains the credentials to authenticate a user agent with a server.
+     * Reference: [RFC7235, Section 4.2](https://datatracker.ietf.org/doc/html/rfc7235#section-4.2)
+     */
+    case AUTHORIZATION = 'Authorization';
+
+    /** 
+     * Contains information about the software used by the originating client.
+     * Reference: [RFC7231, Section 5.5.3](https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3)
+     */
+    case USER_AGENT = 'User-Agent';
+
+    /** 
+     * Used to specify the domain that the cookie belongs to.
+     * Reference: [RFC6265, Section 4.1.2.3](https://datatracker.ietf.org/doc/html/rfc6265#section-4.1.2.3)
+     */
+    case COOKIE = 'Cookie';
+
+    /** 
+     * Indicates the URL to redirect a page to.
+     * Reference: [RFC7231, Section 7.1.2](https://datatracker.ietf.org/doc/html/rfc7231#section-7.1.2)
+     */
+    case LOCATION = 'Location';
+
+    /** 
+     * Indicates that the response must be made over a secure connection (HTTPS).
+     * Reference: [HSTS Specification](https://datatracker.ietf.org/doc/html/rfc6797)
+     */
+    case STRICT_TRANSPORT_SECURITY = 'Strict-Transport-Security';
 }
 
 enum ContentType: string
