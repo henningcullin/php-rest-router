@@ -159,375 +159,495 @@ enum StatusCode: int
      * and that the client should continue with the request or ignore 
      * it if it is already finished.
      * 
-     * Reference: [RFC9110, Section 15.2.1] 
+     * Reference: [RFC9110, Section 15.2.1](https://datatracker.ietf.org/doc/html/rfc9110#section-15.2.1)
      */
     case CONTINUE = 100;
 
     /** 
      * This response code indicates that the server is switching 
      * protocols as requested by the client. 
+     * 
+     * Reference: [RFC9110, Section 15.2.2](https://datatracker.ietf.org/doc/html/rfc9110#section-15.2.2)
      */
-    case SWITCHING_PROTOCOLS = 101; // [RFC9110, Section 15.2.2]
+    case SWITCHING_PROTOCOLS = 101;
 
     /** 
      * This status code indicates that the server has received and 
      * is processing the request, but no response is available yet. 
+     * 
+     * Reference: [RFC2518](https://datatracker.ietf.org/doc/html/rfc2518)
      */
-    case PROCESSING = 102; // WebDAV [RFC2518]
+    case PROCESSING = 102;
 
     /** 
      * This status code is used to return some response headers 
      * before the final response, often used for preloading. 
+     * 
+     * Reference: [RFC8297](https://datatracker.ietf.org/doc/html/rfc8297)
      */
-    case EARLY_HINTS = 103; // [RFC8297]
+    case EARLY_HINTS = 103;
 
 
     // Successful responses
+
+
     /** 
      * The request has succeeded. The meaning of the success depends 
      * on the HTTP method used. 
+     * 
+     * Reference: [RFC9110, Section 15.3.1](https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.1)
      */
-    case OK = 200; // [RFC9110, Section 15.3.1]
+    case OK = 200;
 
     /** 
      * The request has been fulfilled, resulting in the creation of 
      * a new resource. 
+     * 
+     * Reference: [RFC9110, Section 15.3.2](https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.2)
      */
-    case CREATED = 201; // [RFC9110, Section 15.3.2]
+    case CREATED = 201;
 
     /** 
      * The request has been accepted for processing, but the processing 
      * has not been completed. 
+     * 
+     * Reference: [RFC9110, Section 15.3.3](https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.3)
      */
-    case ACCEPTED = 202; // [RFC9110, Section 15.3.3]
+    case ACCEPTED = 202;
 
     /** 
      * The request was successful but the returned meta-information 
      * is not the definitive set of information. 
+     * 
+     * Reference: [RFC9110, Section 15.3.4](https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.4)
      */
-    case NON_AUTHORITATIVE_INFORMATION = 203; // [RFC9110, Section 15.3.4]
+    case NON_AUTHORITATIVE_INFORMATION = 203;
 
     /** 
      * The server successfully processed the request, but is not returning 
      * any content. 
+     * 
+     * Reference: [RFC9110, Section 15.3.5](https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.5)
      */
-    case NO_CONTENT = 204; // [RFC9110, Section 15.3.5]
+    case NO_CONTENT = 204;
 
     /** 
      * The server successfully processed the request, but is not returning 
      * any content, and requires that the requester reset the document view. 
+     * 
+     * Reference: [RFC9110, Section 15.3.6](https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.6)
      */
-    case RESET_CONTENT = 205; // [RFC9110, Section 15.3.6]
+    case RESET_CONTENT = 205;
 
     /** 
      * The server is delivering only part of the resource due to a range 
      * header sent by the client. 
+     * 
+     * Reference: [RFC9110, Section 15.3.7](https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.7)
      */
-    case PARTIAL_CONTENT = 206; // [RFC9110, Section 15.3.7]
+    case PARTIAL_CONTENT = 206;
 
     /** 
      * This status code provides information about multiple resources 
      * in situations where multiple status codes might be appropriate. 
+     * 
+     * Reference: [RFC4918](https://datatracker.ietf.org/doc/html/rfc4918)
      */
-    case MULTI_STATUS = 207; // [RFC4918]
+    case MULTI_STATUS = 207;
 
     /** 
      * This status code indicates that the members of a DAV binding 
      * have already been enumerated in a previous reply. 
+     * 
+     * Reference: [RFC5842](https://datatracker.ietf.org/doc/html/rfc5842)
      */
-    case ALREADY_REPORTED = 208; // [RFC5842]
+    case ALREADY_REPORTED = 208;
 
     /** 
      * The server has fulfilled a GET request for the resource, and 
      * the response is a representation of the result of one or more 
      * instance-manipulations applied to the current instance. 
+     * 
+     * Reference: [RFC3229](https://datatracker.ietf.org/doc/html/rfc3229)
      */
-    case IM_USED = 226; // [RFC3229]
+    case IM_USED = 226;
 
 
     // Redirection messages
 
+
     /** 
      * This status code indicates multiple options for the resource 
      * that the client may follow. 
+     * 
+     * Reference: [RFC9110, Section 15.4.1](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.1)
      */
-    case MULTIPLE_CHOICES = 300; // [RFC9110, Section 15.4.1]
+    case MULTIPLE_CHOICES = 300;
 
     /** 
      * This status code indicates that the resource has been permanently 
      * moved to a new URI. 
+     * 
+     * Reference: [RFC9110, Section 15.4.2](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.2)
      */
-    case MOVED_PERMANENTLY = 301; // [RFC9110, Section 15.4.2]
+    case MOVED_PERMANENTLY = 301;
 
     /** 
      * This status code indicates that the resource is temporarily 
      * located at a different URI. 
+     * 
+     * Reference: [RFC9110, Section 15.4.3](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.3)
      */
-    case FOUND = 302; // [RFC9110, Section 15.4.3]
+    case FOUND = 302;
 
     /** 
      * This status code indicates that the response to the request can 
      * be found at another URI using the GET method. 
+     * 
+     * Reference: [RFC9110, Section 15.4.4](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.4)
      */
-    case SEE_OTHER = 303; // [RFC9110, Section 15.4.4]
+    case SEE_OTHER = 303;
 
     /** 
      * This status code indicates that the resource has not been modified 
      * since the last request. 
+     * 
+     * Reference: [RFC9110, Section 15.4.5](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.5)
      */
-    case NOT_MODIFIED = 304; // [RFC9110, Section 15.4.5]
+    case NOT_MODIFIED = 304;
 
     /** 
      * This status code indicates that the requested resource must be 
      * accessed through the proxy given by the location field. 
+     * 
+     * Reference: [RFC9110, Section 15.4.6](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.6)
      */
-    case USE_PROXY = 305; // [RFC9110, Section 15.4.6]
+    case USE_PROXY = 305;
 
     /** 
      * This status code indicates that the resource is temporarily located 
      * at a different URI. The client must use the same method for the 
      * next request. 
+     * 
+     * Reference: [RFC9110, Section 15.4.8](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.8)
      */
-    case TEMPORARY_REDIRECT = 307; // [RFC9110, Section 15.4.8]
+    case TEMPORARY_REDIRECT = 307;
 
     /** 
      * This status code indicates that the resource has been permanently 
      * moved to a new URI, and the same method should be used for 
      * future requests. 
+     * 
+     * Reference: [RFC9110, Section 15.4.9](https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.9)
      */
-    case PERMANENT_REDIRECT = 308; // [RFC9110, Section 15.4.9]
+    case PERMANENT_REDIRECT = 308;
 
 
     // Client error responses
+
+
     /** 
      * The server could not understand the request due to invalid syntax. 
+     * 
+     * Reference: [RFC9110, Section 15.5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.1)
      */
-    case BAD_REQUEST = 400; // [RFC9110, Section 15.5.1]
+    case BAD_REQUEST = 400;
 
     /** 
      * This status code indicates that the request requires user 
      * authentication. 
+     * 
+     * Reference: [RFC9110, Section 15.5.2](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2)
      */
-    case UNAUTHORIZED = 401; // [RFC9110, Section 15.5.2]
+    case UNAUTHORIZED = 401;
 
     /** 
      * This status code is reserved for future use and is not widely used. 
+     * 
+     * Reference: [RFC9110, Section 15.5.3](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.3)
      */
-    case PAYMENT_REQUIRED = 402; // [RFC9110, Section 15.5.3]
+    case PAYMENT_REQUIRED = 402;
 
     /** 
      * The server understood the request, but refuses to authorize it. 
+     * 
+     * Reference: [RFC9110, Section 15.5.4](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.4)
      */
-    case FORBIDDEN = 403; // [RFC9110, Section 15.5.4]
+    case FORBIDDEN = 403;
 
     /** 
      * The server can't find the requested resource. 
+     * 
+     * Reference: [RFC9110, Section 15.5.5](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.5)
      */
-    case NOT_FOUND = 404; // [RFC9110, Section 15.5.5]
+    case NOT_FOUND = 404;
 
     /** 
      * The method specified in the request is not allowed for the resource. 
+     * 
+     * Reference: [RFC9110, Section 15.5.6](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.6)
      */
-    case METHOD_NOT_ALLOWED = 405; // [RFC9110, Section 15.5.6]
+    case METHOD_NOT_ALLOWED = 405;
 
     /** 
      * The server cannot produce a response matching the criteria 
      * given in the request's headers. 
+     * 
+     * Reference: [RFC9110, Section 15.5.7](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.7)
      */
-    case NOT_ACCEPTABLE = 406; // [RFC9110, Section 15.5.7]
+    case NOT_ACCEPTABLE = 406;
 
     /** 
      * This status code indicates that the client must first authenticate 
      * itself with the proxy. 
+     * 
+     * Reference: [RFC9110, Section 15.5.8](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.8)
      */
-    case PROXY_AUTHENTICATION_REQUIRED = 407; // [RFC9110, Section 15.5.8]
+    case PROXY_AUTHENTICATION_REQUIRED = 407;
 
     /** 
      * This status code indicates that the server would like to shut down 
      * this unused connection. 
+     * 
+     * Reference: [RFC9110, Section 15.5.9](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.9)
      */
-    case REQUEST_TIMEOUT = 408; // [RFC9110, Section 15.5.9]
+    case REQUEST_TIMEOUT = 408;
 
     /** 
      * This status code indicates that the request could not be processed 
      * because of conflict in the request. 
+     * 
+     * Reference: [RFC9110, Section 15.5.10](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.10)
      */
-    case CONFLICT = 409; // [RFC9110, Section 15.5.10]
+    case CONFLICT = 409;
 
     /** 
      * This status code indicates that the resource requested is no longer 
      * available and will not be available again. 
+     * 
+     * Reference: [RFC9110, Section 15.5.11](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.11)
      */
-    case GONE = 410; // [RFC9110, Section 15.5.11]
+    case GONE = 410;
 
     /** 
      * This status code indicates that the server refuses to accept the 
      * request without a defined Content-Length. 
+     * 
+     * Reference: [RFC9110, Section 15.5.12](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.12)
      */
-    case LENGTH_REQUIRED = 411; // [RFC9110, Section 15.5.12]
+    case LENGTH_REQUIRED = 411;
 
     /** 
      * This status code indicates that one or more conditions given in 
      * the request header fields evaluated to false when tested on the 
      * server. 
+     * 
+     * Reference: [RFC9110, Section 15.5.13](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.13)
      */
-    case PRECONDITION_FAILED = 412; // [RFC9110, Section 15.5.13]
+    case PRECONDITION_FAILED = 412;
 
     /** 
      * This status code indicates that the request is larger than the 
      * server is willing or able to process. 
+     * 
+     * Reference: [RFC9110, Section 15.5.14](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.14)
      */
-    case PAYLOAD_TOO_LARGE = 413; // [RFC9110, Section 15.5.14]
+    case PAYLOAD_TOO_LARGE = 413;
 
     /** 
      * This status code indicates that the server is refusing to service 
      * the request because the URI is longer than the server is 
      * willing to interpret. 
+     * 
+     * Reference: [RFC9110, Section 15.5.15](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.15)
      */
-    case URI_TOO_LONG = 414; // [RFC9110, Section 15.5.15]
+    case URI_TOO_LONG = 414;
 
     /** 
      * This status code indicates that the media format of the requested 
      * data is not supported by the server. 
+     * 
+     * Reference: [RFC9110, Section 15.5.16](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.16)
      */
-    case UNSUPPORTED_MEDIA_TYPE = 415; // [RFC9110, Section 15.5.16]
+    case UNSUPPORTED_MEDIA_TYPE = 415;
 
     /** 
      * This status code indicates that the server cannot serve the 
      * requested byte range because the file is shorter than the 
      * requested range. 
+     * 
+     * Reference: [RFC9110, Section 15.5.17](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.17)
      */
-    case RANGE_NOT_SATISFIABLE = 416; // [RFC9110, Section 15.5.17]
+    case RANGE_NOT_SATISFIABLE = 416;
 
     /** 
      * This status code indicates that the server cannot meet the 
      * requirements of the Expect request-header field. 
+     * 
+     * Reference: [RFC9110, Section 15.5.18](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.18)
      */
-    case EXPECTATION_FAILED = 417; // [RFC9110, Section 15.5.18]
+    case EXPECTATION_FAILED = 417;
 
     /** 
-     * Any attempt to instruct an teapot to brew coffee should fail 
+     * Any attempt to instruct a teapot to brew coffee should fail 
      * with an HTTP 418 error. This is an April Fools' joke defined 
      * in RFC 2324. 
+     * 
+     * Reference: [RFC2324](https://datatracker.ietf.org/doc/html/rfc2324)
      */
-    case IM_A_TEAPOT = 418; // [RFC2324]
+    case IM_A_TEAPOT = 418;
 
     /** 
      * This status code indicates that the request was directed at a 
      * server that is not able to produce a response. 
+     * 
+     * Reference: [RFC7540, Section 9.1.2](https://datatracker.ietf.org/doc/html/rfc7540#section-9.1.2)
      */
-    case MISDIRECTED_REQUEST = 421; // [RFC7540, Section 9.1.2]
+    case MISDIRECTED_REQUEST = 421;
 
     /** 
      * This status code indicates that the request was well-formed, 
      * but was unable to be followed due to semantic errors. 
+     * 
+     * Reference: [RFC4918](https://datatracker.ietf.org/doc/html/rfc4918)
      */
-    case UNPROCESSABLE_ENTITY = 422; // [RFC4918]
+    case UNPROCESSABLE_ENTITY = 422;
 
     /** 
      * This status code indicates that the resource that is being accessed 
      * is locked. 
+     * 
+     * Reference: [RFC4918](https://datatracker.ietf.org/doc/html/rfc4918)
      */
-    case LOCKED = 423; // [RFC4918]
+    case LOCKED = 423;
 
     /** 
      * This status code indicates that the request failed due to failure 
      * of a previous request. 
+     * 
+     * Reference: [RFC4918](https://datatracker.ietf.org/doc/html/rfc4918)
      */
-    case FAILED_DEPENDENCY = 424; // [RFC4918]
+    case FAILED_DEPENDENCY = 424;
 
     /** 
      * This status code indicates that the server refuses to perform the 
      * request using the current protocol but might be willing to do so 
      * if the client upgrades to a different protocol. 
+     * 
+     * Reference: [RFC7540, Section 9.1.2](https://datatracker.ietf.org/doc/html/rfc7540#section-9.1.2)
      */
-    case UPGRADE_REQUIRED = 426; // [RFC7540, Section 9.1.2]
+    case UPGRADE_REQUIRED = 426;
 
     /** 
      * This status code indicates that the origin server requires the 
      * request to be conditional. 
+     * 
+     * Reference: [RFC6585](https://datatracker.ietf.org/doc/html/rfc6585)
      */
-    case PRECONDITION_REQUIRED = 428; // [RFC6585]
+    case PRECONDITION_REQUIRED = 428;
 
     /** 
      * This status code indicates that the user has sent too many 
      * requests in a given amount of time. 
+     * 
+     * Reference: [RFC6585](https://datatracker.ietf.org/doc/html/rfc6585)
      */
-    case TOO_MANY_REQUESTS = 429; // [RFC6585]
+    case TOO_MANY_REQUESTS = 429;
 
     /** 
      * This status code indicates that the server is unwilling to 
      * process the request because its header fields are too large. 
+     * 
+     * Reference: [RFC6585](https://datatracker.ietf.org/doc/html/rfc6585)
      */
-    case REQUEST_HEADER_FIELDS_TOO_LARGE = 431; // [RFC6585]
+    case REQUEST_HEADER_FIELDS_TOO_LARGE = 431;
 
 
     // Server error responses
+
 
     /** 
      * This status code indicates that the server encountered an 
      * unexpected condition that prevented it from fulfilling the 
      * request. 
+     * 
+     * Reference: [RFC9110, Section 15.6.1](https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.1)
      */
-    case INTERNAL_SERVER_ERROR = 500; // [RFC9110, Section 15.6.1]
+    case INTERNAL_SERVER_ERROR = 500;
 
     /** 
      * This status code indicates that the server does not support 
      * the functionality required to fulfill the request. 
+     * 
+     * Reference: [RFC9110, Section 15.6.2](https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.2)
      */
-    case NOT_IMPLEMENTED = 501; // [RFC9110, Section 15.6.2]
+    case NOT_IMPLEMENTED = 501;
 
     /** 
      * This status code indicates that the server, while acting as a 
      * gateway or proxy, received an invalid response from the 
      * upstream server. 
+     * 
+     * Reference: [RFC9110, Section 15.6.3](https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.3)
      */
-    case BAD_GATEWAY = 502; // [RFC9110, Section 15.6.3]
+    case BAD_GATEWAY = 502;
 
     /** 
      * This status code indicates that the server is currently unable 
      * to handle the request due to temporary overloading or 
      * maintenance of the server. 
+     * 
+     * Reference: [RFC9110, Section 15.6.4](https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.4)
      */
-    case SERVICE_UNAVAILABLE = 503; // [RFC9110, Section 15.6.4]
+    case SERVICE_UNAVAILABLE = 503;
 
     /** 
      * This status code indicates that the server, while acting as a 
      * gateway or proxy, did not receive a timely response from the 
      * upstream server. 
+     * 
+     * Reference: [RFC9110, Section 15.6.5](https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.5)
      */
-    case GATEWAY_TIMEOUT = 504; // [RFC9110, Section 15.6.5]
+    case GATEWAY_TIMEOUT = 504;
 
     /** 
      * This status code indicates that the server does not support 
      * the HTTP protocol version that was used in the request. 
+     * 
+     * Reference: [RFC9110, Section 15.6.6](https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.6)
      */
-    case HTTP_VERSION_NOT_SUPPORTED = 505; // [RFC9110, Section 15.6.6]
+    case HTTP_VERSION_NOT_SUPPORTED = 505;
 
     /** 
      * This status code indicates that the server has an internal 
      * configuration error: transparent content negotiation for the 
      * request results in a circular reference. 
+     * 
+     * Reference: [RFC2295](https://datatracker.ietf.org/doc/html/rfc2295)
      */
-    case VARIANT_ALSO_NEGOTIATES = 506; // [RFC2295]
+    case VARIANT_ALSO_NEGOTIATES = 506;
 
     /** 
      * This status code indicates that the server is unable to store 
      * the representation needed to complete the request. 
+     * 
+     * Reference: [RFC4918](https://datatracker.ietf.org/doc/html/rfc4918)
      */
-    case INSUFFICIENT_STORAGE = 507; // [RFC4918]
+    case INSUFFICIENT_STORAGE = 507;
 
     /** 
      * This status code indicates that the server detected an infinite 
      * loop while processing a request. 
+     * 
+     * Reference: [RFC5842](https://datatracker.ietf.org/doc/html/rfc5842)
      */
-    case LOOP_DETECTED = 508; // [RFC5842]
+    case LOOP_DETECTED = 508;
 
     /** 
      * This status code indicates that further extensions to the request 
-     * are required for the server to fulfill it.
+     * are required for the server to fulfill it. 
      * 
-     * Reference: [RFC2774] 
+     * Reference: [RFC2774](https://datatracker.ietf.org/doc/html/rfc2774)
      */
     case NOT_EXTENDED = 510;
 }
