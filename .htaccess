@@ -1,1 +1,9 @@
 php_flag enable_post_data_reading off
+
+RewriteEngine On
+RewriteBase /php-rest-router/
+
+# Redirect all requests to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
