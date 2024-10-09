@@ -897,28 +897,84 @@ enum ContentType: string
 
 class Router
 {
-    private $params = [];
-    private $body = [];
-
     public $routes = [];
+    private $basePath;
+
+    public function __construct($basePath)
+    {
+        $this->basePath = rtrim($basePath, '/'); // Set base path, ensure no trailing slash
+    }
 
     public function nest() {}
 
-    public function get() {}
+    public function get($route, $handler)
+    {
+        $this->routes[$route]['GET'] = $handler;
+    }
 
-    public function post() {}
+    public function post($route, $handler)
+    {
+        $this->routes[$route]['POST'] = $handler;
+    }
 
-    public function put() {}
+    public function put($route, $handler)
+    {
+        $this->routes[$route]['PUT'] = $handler;
+    }
 
-    public function head() {}
+    public function head($route, $handler)
+    {
+        $this->routes[$route]['HEAD'] = $handler;
+    }
 
-    public function delete() {}
+    public function delete($route, $handler)
+    {
+        $this->routes[$route]['DELETE'] = $handler;
+    }
 
-    public function options() {}
+    public function options($route, $handler)
+    {
+        $this->routes[$route]['OPTIONS'] = $handler;
+    }
 
-    public function patch() {}
+    public function patch($route, $handler)
+    {
+        $this->routes[$route]['PATCH'] = $handler;
+    }
 
-    public function trace() {}
+    public function trace($route, $handler)
+    {
+        $this->routes[$route]['TRACE'] = $handler;
+    }
 
-    public function connect() {}
+    public function connect($route, $handler)
+    {
+        $this->routes[$route]['CONNECT'] = $handler;
+    }
+
+    public function listen()
+    {
+        $method = $_SERVER['REQUEST_METHOD'];
+        $params = $_GET;
+        $body = $this->getRequestBody();
+
+        // Remove base path from the request URI
+        $route = strtok(str_replace($this->basePath, '', $_SERVER['REQUEST_URI']), '?'); // Remove base path and query string
+
+        if (isset($this->routes[$route][$method])) {
+            $handler = $this->routes[$route][$method];
+            // Call the handler with parameters and body
+            call_user_func($handler, $params, $body);
+        } else {
+            http_response_code(404);
+            echo "404 Not Found";
+        }
+    }
+
+    private function getRequestBody()
+    {
+        $body = file_get_contents('php://input');
+
+        return json_decode($body, true);
+    }
 }
