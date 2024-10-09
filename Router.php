@@ -6,7 +6,7 @@ enum Method: string
      * The GET method requests a representation of the specified resource. 
      * Requests using GET should only retrieve data and have no other effect. 
      * 
-     * Reference: [RFC7231, Section 4.3.1]
+     * Reference: [RFC7231, Section 4.3.1](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1)
      */
     case GET = 'GET';
 
@@ -15,7 +15,7 @@ enum Method: string
      * It can result in the creation of a new resource or the modification 
      * of existing resources. 
      * 
-     * Reference: [RFC7231, Section 4.3.3]
+     * Reference: [RFC7231, Section 4.3.3](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3)
      */
     case POST = 'POST';
 
@@ -23,7 +23,7 @@ enum Method: string
      * The PUT method replaces all current representations of the target 
      * resource with the request payload. 
      * 
-     * Reference: [RFC7231, Section 4.3.4]
+     * Reference: [RFC7231, Section 4.3.4](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.4)
      */
     case PUT = 'PUT';
 
@@ -31,14 +31,14 @@ enum Method: string
      * The HEAD method requests the headers of a specified resource, 
      * similar to a GET request, but without the response body. 
      * 
-     * Reference: [RFC7231, Section 4.3.2]
+     * Reference: [RFC7231, Section 4.3.2](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.2)
      */
     case HEAD = 'HEAD';
 
     /** 
      * The DELETE method deletes the specified resource. 
      * 
-     * Reference: [RFC7231, Section 4.3.5]
+     * Reference: [RFC7231, Section 4.3.5](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.5)
      */
     case DELETE = 'DELETE';
 
@@ -47,14 +47,14 @@ enum Method: string
      * target resource. It can be used to check the supported methods 
      * and other capabilities of a server. 
      * 
-     * Reference: [RFC7231, Section 4.3.7]
+     * Reference: [RFC7231, Section 4.3.7](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.7)
      */
     case OPTIONS = 'OPTIONS';
 
     /** 
      * The PATCH method applies partial modifications to a resource. 
      * 
-     * Reference: [RFC5789, Section 2]
+     * Reference: [RFC5789, Section 2](https://datatracker.ietf.org/doc/html/rfc5789#section-2)
      */
     case PATCH = 'PATCH';
 
@@ -62,7 +62,7 @@ enum Method: string
      * The TRACE method performs a message loop-back test along the 
      * path to the target resource, providing a useful debugging tool. 
      * 
-     * Reference: [RFC7231, Section 4.3.8]
+     * Reference: [RFC7231, Section 4.3.8](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.8)
      */
     case TRACE = 'TRACE';
 
@@ -71,28 +71,28 @@ enum Method: string
      * by the target resource. This is often used for SSL (HTTPS) 
      * connections through an HTTP proxy. 
      * 
-     * Reference: [RFC7231, Section 4.3.6]
+     * Reference: [RFC7231, Section 4.3.6](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.6)
      */
     case CONNECT = 'CONNECT';
 
     /** 
      * The COPY method creates a duplicate of a resource at a different URI.
      * 
-     * Reference: [RFC4918, Section 9.8]
+     * Reference: [RFC4918, Section 9.8](https://datatracker.ietf.org/doc/html/rfc4918#section-9.8)
      */
     case COPY = 'COPY';
 
     /** 
      * The LINK method establishes a relationship between two resources. 
      * 
-     * Reference: [RFC2068, Section 9.4]
+     * Reference: [RFC2068, Section 9.4](https://datatracker.ietf.org/doc/html/rfc2068#section-9.4)
      */
     case LINK = 'LINK';
 
     /** 
      * The UNLINK method removes a relationship between two resources. 
      * 
-     * Reference: [RFC2068, Section 9.4]
+     * Reference: [RFC2068, Section 9.4](https://datatracker.ietf.org/doc/html/rfc2068#section-9.4)
      */
     case UNLINK = 'UNLINK';
 
@@ -107,7 +107,7 @@ enum Method: string
      * The PROPFIND method retrieves properties of a resource, primarily 
      * used in WebDAV. 
      * 
-     * Reference: [RFC4918, Section 9.1]
+     * Reference: [RFC4918, Section 9.1](https://datatracker.ietf.org/doc/html/rfc4918#section-9.1)
      */
     case PROPFIND = 'PROPFIND';
 
@@ -115,7 +115,7 @@ enum Method: string
      * The PROPPATCH method modifies properties of a resource, primarily 
      * used in WebDAV. 
      * 
-     * Reference: [RFC4918, Section 9.2]
+     * Reference: [RFC4918, Section 9.2](https://datatracker.ietf.org/doc/html/rfc4918#section-9.2)
      */
     case PROPPATCH = 'PROPPATCH';
 
@@ -123,14 +123,14 @@ enum Method: string
      * The MKCOL method creates a new collection (e.g., a directory) in 
      * WebDAV. 
      * 
-     * Reference: [RFC4918, Section 9.3]
+     * Reference: [RFC4918, Section 9.3](https://datatracker.ietf.org/doc/html/rfc4918#section-9.3)
      */
     case MKCOL = 'MKCOL';
 
     /** 
      * The MOVE method moves a resource from one URI to another in WebDAV. 
      * 
-     * Reference: [RFC4918, Section 9.4]
+     * Reference: [RFC4918, Section 9.4](https://datatracker.ietf.org/doc/html/rfc4918#section-9.4)
      */
     case MOVE = 'MOVE';
 
@@ -138,17 +138,18 @@ enum Method: string
      * The LOCK method locks a resource so that it cannot be modified 
      * by other users in WebDAV. 
      * 
-     * Reference: [RFC4918, Section 9.7]
+     * Reference: [RFC4918, Section 9.7](https://datatracker.ietf.org/doc/html/rfc4918#section-9.7)
      */
     case LOCK = 'LOCK';
 
     /** 
      * The UNLOCK method unlocks a previously locked resource in WebDAV. 
      * 
-     * Reference: [RFC4918, Section 9.8]
+     * Reference: [RFC4918, Section 9.8](https://datatracker.ietf.org/doc/html/rfc4918#section-9.8)
      */
     case UNLOCK = 'UNLOCK';
 }
+
 
 enum StatusCode: int
 {
